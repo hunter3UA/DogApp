@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DogApp.Application\DogApp.Application.csproj" />
+  </ItemGroup>
+
 </Project>

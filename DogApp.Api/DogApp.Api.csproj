@@ -12,6 +12,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DogApp.Application\DogApp.Application.csproj" />
+    <ProjectReference Include="..\DogApp.Іnfrastructure\DogApp.Іnfrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Controllers\" />
   </ItemGroup>
 
