@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33103.184
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DogApp.Api", "DogApp.Api\DogApp.Api.csproj", "{4C19AF09-0D2F-4A35-9588-11932B801700}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4C19AF09-0D2F-4A35-9588-11932B801700}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C19AF09-0D2F-4A35-9588-11932B801700}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C19AF09-0D2F-4A35-9588-11932B801700}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C19AF09-0D2F-4A35-9588-11932B801700}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0706A440-F614-4579-B379-13C20CDB3C51}
+	EndGlobalSection
+EndGlobal
