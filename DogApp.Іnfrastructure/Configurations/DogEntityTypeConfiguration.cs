@@ -1,4 +1,5 @@
-﻿using DogApp.Domain.DbEntities;
+﻿using DogApp.Domain.Constants;
+using DogApp.Domain.DbEntities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -10,16 +11,25 @@ namespace DogApp.Іnfrastructure.Configurations
         {
             base.Configure(builder);
 
-            builder.Property(p => p.Name).HasColumnName("name").HasMaxLength(255).IsRequired();
-            builder.Property(p => p.Color).HasColumnName("color").HasMaxLength(150).IsRequired();
+            builder.Property(p => p.Name)
+                .HasColumnName("name")
+                .HasMaxLength(EntityConstants.DogConstants.MaxDogNameLength)
+                .IsRequired();
+
+            builder.Property(p => p.Color)
+                .HasColumnName("color")
+                .HasMaxLength(EntityConstants.DogConstants.MaxDogColorLength)
+                .IsRequired();
+
             builder.Property(p => p.TailLength).HasColumnName("tail_length").IsRequired();
             builder.Property(p => p.Weight).HasColumnName("weight").IsRequired();
             builder.HasIndex(p => p.Name).HasDatabaseName("ix_dogs_name").IsUnique();
             builder.ToTable("dogs", t =>
             {
-                t.HasCheckConstraint("ck_tail_length", "tail_length>0 and tail_length<100");
-                t.HasCheckConstraint("ck_weight", "weight>0 and weight<150");
+                t.HasCheckConstraint("ck_tail_length", $"tail_length>=0 and tail_length<={EntityConstants.DogConstants.MaxDogTailLength}");
+                t.HasCheckConstraint("ck_weight", $"weight>0 and weight<={EntityConstants.DogConstants.MaxDogWeight}");
             });
+
             builder.HasData(
                 CreateDog("Jeck", "white", 10, 20.5),
                 CreateDog("Alice", "black", 6, 15),

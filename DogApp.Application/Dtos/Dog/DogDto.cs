@@ -2,7 +2,7 @@
 
 namespace DogApp.Application.Dtos.Dog
 {
-    public record DogDto
+    public sealed record DogDto
     {
         public string? Name { get; set; }
 

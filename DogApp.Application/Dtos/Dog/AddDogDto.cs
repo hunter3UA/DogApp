@@ -2,7 +2,7 @@
 
 namespace DogApp.Application.Dtos.Dog
 {
-    public record AddDogDto(
+    public sealed record AddDogDto(
         string Name,
         string Color,
         [property: JsonPropertyName("tail_length")] double TailLength,
