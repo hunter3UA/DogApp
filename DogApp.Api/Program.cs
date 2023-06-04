@@ -2,7 +2,9 @@
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().ConfigureApiBehavior();
+builder.Services.AddRouting(options => options.LowercaseUrls = true);
+builder.Services.AddFluentValidationBehaviour();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
