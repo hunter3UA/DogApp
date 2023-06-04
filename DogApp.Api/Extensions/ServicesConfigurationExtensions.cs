@@ -1,5 +1,5 @@
 ﻿using DogApp.Api.Models;
-using DogApp.Application.Dtos.Dog;
+using DogApp.Application;
 using DogApp.Application.Repositories;
 using DogApp.Іnfrastructure.DbContexts;
 using DogApp.Іnfrastructure.Repositories;
@@ -23,10 +23,9 @@ namespace DogApp.Api.Extensions
             return services;
         }
 
-
         public static IServiceCollection AddFluentValidationBehaviour(this IServiceCollection services)
         {
-            services.AddValidatorsFromAssembly(typeof(AddDogDto).Assembly);
+            services.AddValidatorsFromAssembly(ApplicationAssembly.GetAssembly());
             services.AddFluentValidationAutoValidation();
 
             return services;

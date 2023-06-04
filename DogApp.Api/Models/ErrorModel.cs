@@ -2,7 +2,7 @@
 
 namespace DogApp.Api.Models
 {
-    public class ErrorModel
+    public sealed class ErrorModel
     {
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string? PropertyName { get; set; }
