@@ -12,7 +12,7 @@ using Newtonsoft.Json;
 
 namespace DogApp.Api.Extensions
 {
-    public static class ServiceCollectionExtensions
+    public static class ServicesConfigurationExtensions
     {
         public static IServiceCollection AddDogDbContext(this IServiceCollection services, IConfiguration configuration)
         {
