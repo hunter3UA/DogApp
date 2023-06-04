@@ -40,12 +40,12 @@ namespace DogApp.Іnfrastructure.Repositories
         }
 
         public async Task<IEnumerable<TEntity>> GetRangeAsync(
-            Expression<Func<TEntity, object>>? sortingExpression,
             CancellationToken cancellationToken,
+            Expression<Func<TEntity, object>>? sortingExpression,
+            SortingOrder sortingOrder = SortingOrder.Asc,
             int skip = default,
             int take = default,
-            bool asNoTracking = true,
-            SortingOrder sortingOrder = SortingOrder.Asc)
+            bool asNoTracking = true)
         {
             var sortedList = await _dbSet
                 .NoTracking(asNoTracking)

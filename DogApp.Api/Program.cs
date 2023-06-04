@@ -1,5 +1,6 @@
 ﻿using DogApp.Api.Extensions;
 using DogApp.Application;
+using DogApp.Іnfrastructure.DbContexts;
 
 var builder = WebApplication.CreateBuilder(args);
 

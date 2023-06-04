@@ -1,8 +1,8 @@
 ﻿using Newtonsoft.Json;
 
-namespace DogApp.Api.Models
+namespace DogApp.Application.Models
 {
-    public sealed class ErrorModel
+    public sealed class ErrorResponse
     {
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string? PropertyName { get; set; }

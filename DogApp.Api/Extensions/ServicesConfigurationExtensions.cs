@@ -1,5 +1,5 @@
-﻿using DogApp.Api.Models;
-using DogApp.Application;
+﻿using DogApp.Application;
+using DogApp.Application.Models;
 using DogApp.Application.Repositories;
 using DogApp.Іnfrastructure.DbContexts;
 using DogApp.Іnfrastructure.Repositories;
@@ -41,13 +41,13 @@ namespace DogApp.Api.Extensions
                         .Where(ms => ms.Value is not null && !ms.Value.Errors.IsNullOrEmpty())
                         .ToDictionary(kvp => kvp.Key, kvp => kvp.Value!.Errors.Select(e => e.ErrorMessage)).ToArray();
 
-                    var errorResponse = new List<ErrorModel>();
+                    var errorResponse = new List<ErrorResponse>();
 
                     foreach (var error in errors)
                     {
                         foreach (var subError in error.Value)
                         {
-                            errorResponse.Add(new ErrorModel { PropertyName = error.Key, Message = subError });
+                            errorResponse.Add(new ErrorResponse { PropertyName = error.Key, Message = subError });
                         }
                     }
                     var result = JsonConvert.SerializeObject(errorResponse);

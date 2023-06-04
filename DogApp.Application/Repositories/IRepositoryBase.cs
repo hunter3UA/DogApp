@@ -12,12 +12,12 @@ namespace DogApp.Application.Repositories
             CancellationToken cancellationToken);
 
         Task<IEnumerable<TEntity>> GetRangeAsync(
-            Expression<Func<TEntity,object>>? sortingExpression,
             CancellationToken cancellationToken,
+            Expression<Func<TEntity, object>>? sortingExpression,
+            SortingOrder sortingOrder = SortingOrder.Asc,
             int skip = default,
             int take = default,
-            bool asNoTracking = true,
-            SortingOrder sortingOrder = SortingOrder.Asc);
+            bool asNoTracking = true);
 
         Task<bool> AnyAsync(
             Expression<Func<TEntity, bool>> expression,
