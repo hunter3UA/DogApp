@@ -1,10 +1,9 @@
-﻿using DogApp.Domain.Enums;
-using LanguageExt.Common;
+﻿using LanguageExt.Common;
 using MediatR;
 
 namespace DogApp.Application.Commands.Common
 {
-    public class GetPagedAndSortedDataCommand<T> : IRequest<Result<IEnumerable<T>>>
+    public sealed class GetPagedAndSortedDataCommand<T> : IRequest<Result<List<T>>>
     {
         public int PageNumber { get; set; }
 

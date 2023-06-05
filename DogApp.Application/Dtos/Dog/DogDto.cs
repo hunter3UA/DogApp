@@ -4,9 +4,11 @@ namespace DogApp.Application.Dtos.Dog
 {
     public sealed record DogDto
     {
-        public string? Name { get; set; }
+        public Guid Id { get; set; }
 
-        public string? Color { get; set; }
+        public required string Name { get; set; }
+
+        public required string Color { get; set; }
 
         [JsonPropertyName("tail_length")]
         public double TailLength { get; set; }

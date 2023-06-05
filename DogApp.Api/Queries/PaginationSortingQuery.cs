@@ -1,6 +1,6 @@
-﻿using System.Text.Json.Serialization;
+﻿using Microsoft.AspNetCore.Mvc;
 
-namespace DogApp.Application.Queries
+namespace DogApp.Api.Queries
 {
     public class PaginationSortingQuery
     {
@@ -17,10 +17,10 @@ namespace DogApp.Application.Queries
 
         public int PageSize { get; set; }
 
-        [JsonPropertyName("attribute")]
+        [FromQuery(Name = "Attribute")]
         public string? SortingAttribute { get; set; }
 
-        [JsonPropertyName("order")]
+        [FromQuery(Name ="Order")]
         public string? SortingOrder { get; set; }
     }
 }

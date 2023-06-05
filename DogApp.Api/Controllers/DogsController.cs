@@ -1,8 +1,10 @@
-﻿using AutoMapper;
+﻿using System.Net;
+using AutoMapper;
+using DogApp.Api.Queries;
 using DogApp.Application.Commands.Common;
 using DogApp.Application.Commands.Dog;
 using DogApp.Application.Dtos.Dog;
-using DogApp.Application.Queries;
+using DogApp.Application.Models;
 using DogApp.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -11,7 +13,7 @@ namespace DogApp.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class DogsController : ControllerBase
+    public class DogsController : BaseController
     {
         private readonly IMapper _mapper;
         private readonly IMediator _mediator;
@@ -31,22 +33,30 @@ namespace DogApp.Api.Controllers
                 PageNumber = query.PageNumber,
                 PageSize = query.PageSize,
                 SortingAttribute = query.SortingAttribute,
-                SortingOrder = query.SortingOrder,
+                SortingOrder = query.SortingOrder
             };
 
-            var pagedResult = await _mediator.Send(paginationCommand, cancellationToken);
+            var dogsByPages = await _mediator.Send(paginationCommand, cancellationToken);
 
-            return pagedResult.Match<ActionResult>(obj => { return new OkObjectResult(obj); }, error => { return new BadRequestObjectResult(error); });
+            return dogsByPages.Map(_mapper.Map<List<DogDto>>)
+                .Match(dogs =>
+                {
+                    var pagedResponse = new PagedResponse<List<DogDto>>(dogs);
+
+                    return Ok(pagedResponse);
+                }, ExceptionResolver);
         }
 
         [HttpPost]
         public async Task<ActionResult> AddDog([FromBody] AddDogDto addDogDto, CancellationToken cancellationToken)
         {
             var addDogCommand = _mapper.Map<AddDogCommand>(addDogDto);
-            var addedId = await _mediator.Send(addDogCommand, cancellationToken);
+            var createdDogId = await _mediator.Send(addDogCommand, cancellationToken);
 
-            return Ok();
+            return createdDogId.Match(createdId =>
+            {
+                return StatusCode((int)HttpStatusCode.Created, createdId);
+            }, ExceptionResolver);
         }
-
     }
 }

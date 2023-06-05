@@ -1,18 +1,18 @@
-﻿namespace DogApp.Application.Models
+﻿using System.Collections;
+
+namespace DogApp.Application.Models
 {
-    public class PagedResponse<T>
+    public sealed class PagedResponse<T> where T:IEnumerable
     {
-        public IEnumerable<T> Data { get; set; }
+        public T Data { get; set; }
 
         public int? PageNumber { get; set; }
 
         public int? PageSize { get; set; }
 
-        public PagedResponse(IEnumerable<T> data)
+        public PagedResponse(T data)
         {
             Data = data;
         }
-
     }
-
 }

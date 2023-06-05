@@ -1,4 +1,5 @@
-﻿using DogApp.Application;
+﻿using AspNetCoreRateLimit;
+using DogApp.Application;
 using DogApp.Application.Models;
 using DogApp.Application.Repositories;
 using DogApp.Іnfrastructure.DbContexts;
@@ -25,10 +26,22 @@ namespace DogApp.Api.Extensions
 
         public static IServiceCollection AddFluentValidationBehaviour(this IServiceCollection services)
         {
-            services.AddValidatorsFromAssembly(ApplicationAssembly.GetAssembly());
             services.AddFluentValidationAutoValidation();
+            services.AddFluentValidationClientsideAdapters();
+            services.AddValidatorsFromAssembly(ApplicationAssembly.GetAssembly());
 
             return services;
+        }
+
+        public static IServiceCollection AddRateLimiting(this IServiceCollection services,IConfiguration configuration)
+        {
+            services.AddOptions();
+            services.Configure<IpRateLimitOptions>(configuration.GetSection(nameof(IpRateLimitOptions)));
+            services.AddMemoryCache();
+            services.AddInMemoryRateLimiting();
+            services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
+
+            return services;      
         }
 
         public static IMvcBuilder ConfigureApiBehavior(this IMvcBuilder builder)
@@ -47,7 +60,7 @@ namespace DogApp.Api.Extensions
                     {
                         foreach (var subError in error.Value)
                         {
-                            errorResponse.Add(new ErrorResponse { PropertyName = error.Key, Message = subError });
+                            errorResponse.Add(new ErrorResponse { Key = error.Key, Message = subError });
                         }
                     }
                     var result = JsonConvert.SerializeObject(errorResponse);
@@ -57,6 +70,15 @@ namespace DogApp.Api.Extensions
             });
 
             return builder;
+        }
+
+        public static IServiceCollection AddExternalServices(this IServiceCollection services)
+        {
+            services.AddAutoMapper(ApplicationAssembly.GetAssembly());
+            services.AddFluentValidationBehaviour();
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(ApplicationAssembly.GetAssembly()));
+
+            return services;
         }
     }
 }

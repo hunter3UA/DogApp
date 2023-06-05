@@ -2,14 +2,29 @@
 {
     public class PaginationHelper
     {
-        private const int MaxPageSize = 30;
-
-        public static int FormatCurrentPage(int currentPage, int elementsOnPage, int totalItems)
+        /// <summary>
+        /// This method check our currentPage. 
+        /// If <paramref name="totalItems"/> less than or equal 0, method returns default values.
+        /// If <paramref name="pageSize"/> greater than totalPages, method retuns first page;
+        /// </summary>
+        /// <param name="pageNumber"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="totalItems"></param>
+        /// <returns></returns>
+        public static (int PageNumber, int PageSize) FormatCurrentPage(int pageNumber, int pageSize, int totalItems)
         {
-            int totalPages = GetTotalPages(totalItems, elementsOnPage);
-            currentPage = currentPage > totalPages || currentPage <= 0 ? 1 : currentPage;
+            if (totalItems <= 0)
+                return (default, default);
 
-            return currentPage;
+            int totalPages = GetTotalPages(totalItems, pageSize);
+            pageNumber = pageNumber > totalPages ? 1 : pageNumber;
+
+            return (pageNumber, pageSize);
+        }
+
+        public static int Skip(int pageNumber, int pageSize)
+        {
+            return (pageNumber - 1) * pageSize;
         }
 
         private static int GetTotalPages(int totalItems, int elementsOnPage)
@@ -18,27 +33,3 @@
         }
     }
 }
-/*
-    public static ItemPageDTO<T> CreatePage(int currentPage, int elementsOnPage, int totalItems, List<T> items)
-        {
-            return new ItemPageDTO<T>()
-            {
-                Items = items,
-                PageInfo = new PageInfoDTO
-                {
-                    CurrentPageNumber = currentPage,
-                    ElementsOnPage = elementsOnPage,
-                    TotalItems = totalItems
-                }
-            };    
-        }
-
-        public static int CheckCurrentPage(int currentPage, int elementsOnPage,int totalItemss)
-        {
-            PageInfoDTO pageInfo = new PageInfoDTO { CurrentPageNumber = currentPage, ElementsOnPage = elementsOnPage, TotalItems = totalItemss };
-
-            currentPage = currentPage > pageInfo.TotalPages || currentPage <= 0 ? 1 : currentPage;
-
-            return currentPage;
-        }
- */

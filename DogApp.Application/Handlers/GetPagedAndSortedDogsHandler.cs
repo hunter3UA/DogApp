@@ -9,7 +9,7 @@ using MediatR;
 
 namespace DogApp.Application.Handlers
 {
-    public class GetPagedAndSortedDogsHandler : IRequestHandler<GetPagedAndSortedDataCommand<DogEntity>, Result<IEnumerable<DogEntity>>>
+    public class GetPagedAndSortedDogsHandler : IRequestHandler<GetPagedAndSortedDataCommand<DogEntity>, Result<List<DogEntity>>>
     {
         private readonly IRepositoryWrapper _repositoryWrapper;
         private readonly IMapper _mapper;
@@ -20,23 +20,23 @@ namespace DogApp.Application.Handlers
             _mapper = mapper;
         }
 
-        public async Task<Result<IEnumerable<DogEntity>>> Handle(GetPagedAndSortedDataCommand<DogEntity> request, CancellationToken cancellationToken)
+        public async Task<Result<List<DogEntity>>> Handle(GetPagedAndSortedDataCommand<DogEntity> request, CancellationToken cancellationToken)
         {
             var countOfDogs = await _repositoryWrapper.Dogs.CountAsync(cancellationToken);
 
             var sortingOrder = SortingHelper.ConvertToEnum(request.SortingOrder);
             var sortedExpression = ExpressionHelper.CreateSortedExpression<DbDog>(request.SortingAttribute!);
-            var currentPage =  PaginationHelper.FormatCurrentPage(request.PageNumber, request.PageSize, countOfDogs);
+            var pageSettings =  PaginationHelper.FormatCurrentPage(request.PageNumber, request.PageSize, countOfDogs);
 
             var pagedElements = await _repositoryWrapper.Dogs
                 .GetRangeAsync(
                 cancellationToken,
                 sortedExpression,
                 sortingOrder,
-                (currentPage - 1) * request.PageSize, 
-                request.PageSize);
-
-            return _mapper.Map<List<DogEntity>>(pagedElements.ToList());
+                pageSettings.PageNumber, 
+                pageSettings.PageSize);
+            
+            return _mapper.Map<List<DogEntity>>(pagedElements);
         }
     }
 }

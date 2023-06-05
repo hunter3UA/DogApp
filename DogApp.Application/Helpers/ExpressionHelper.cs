@@ -7,7 +7,6 @@ namespace DogApp.Application.Helpers
     {
         public static Expression<Func<T, object>>? CreateSortedExpression<T>(string propertyName)
         {
-
             var propByName = TypeDescriptor.GetProperties(typeof(T)).Find(propertyName, true);
             if (propByName is null)
                 return null;

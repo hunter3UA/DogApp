@@ -13,6 +13,7 @@ namespace DogApp.Application.Mappings
             CreateMap<AddDogDto, AddDogCommand>();
             CreateMap<AddDogCommand, DbDog>();
             CreateMap<DbDog, DogEntity>();
+            CreateMap<DogEntity, DogDto>();
         }
     }
 }

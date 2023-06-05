@@ -6,8 +6,8 @@
 
         public required string Color { get; set; }
 
-        public required double TailLength { get; set; }
+        public double TailLength { get; set; }
 
-        public required double Weight { get; set; }
+        public double Weight { get; set; }
     }
 }

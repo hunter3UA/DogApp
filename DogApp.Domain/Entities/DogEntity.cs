@@ -4,9 +4,9 @@
     {
         public Guid Id { get; set; }
 
-        public string? Name { get; set; }
+        public required string Name { get; set; }
 
-        public string? Color { get; set; }
+        public required string Color { get; set; }
 
         public double TailLength { get; set; }
 
