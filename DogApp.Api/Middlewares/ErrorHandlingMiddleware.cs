@@ -35,8 +35,8 @@ namespace DogApp.Api.Middlewares
             context.Response.StatusCode = GetCode(error);
 
             var errorMessage = GetErrorMessage(error, isDevelopment, context.Response.StatusCode);
-            var errorModel = new ErrorModel { Message= errorMessage }; 
-            
+            var errorModel = new ErrorModel { Message = errorMessage };
+
             var responseBody = JsonConvert.SerializeObject(new ErrorResponse(errorModel));
 
             await context.Response.WriteAsync(responseBody);

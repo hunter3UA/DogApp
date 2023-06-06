@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace DogApp.Api.Extensions
 {
@@ -33,7 +34,7 @@ namespace DogApp.Api.Extensions
             return services;
         }
 
-        public static IServiceCollection AddRateLimiting(this IServiceCollection services,IConfiguration configuration)
+        public static IServiceCollection AddRateLimiting(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddOptions();
             services.Configure<IpRateLimitOptions>(configuration.GetSection(nameof(IpRateLimitOptions)));
@@ -41,7 +42,7 @@ namespace DogApp.Api.Extensions
             services.AddInMemoryRateLimiting();
             services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
 
-            return services;      
+            return services;
         }
 
         public static IMvcBuilder ConfigureApiBehavior(this IMvcBuilder builder)
@@ -63,6 +64,15 @@ namespace DogApp.Api.Extensions
                             validationErrors.Add(new ErrorModel { Key = error.Key, Message = subError });
                         }
                     }
+
+                    var jsonSettings = new JsonSerializerSettings
+                    {
+                        ContractResolver = new DefaultContractResolver
+                        {
+                            NamingStrategy = new CamelCaseNamingStrategy()
+                        }
+                    };
+
                     var result = JsonConvert.SerializeObject(new ErrorResponse(validationErrors));
 
                     return new BadRequestObjectResult(result);
@@ -79,6 +89,14 @@ namespace DogApp.Api.Extensions
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(ApplicationAssembly.GetAssembly()));
 
             return services;
+        }
+    }
+
+    public class LowercaseContractResolver : DefaultContractResolver
+    {
+        protected override string ResolvePropertyName(string propertyName)
+        {
+            return propertyName.Substring(0, 1).ToLower() + propertyName.Substring(1);
         }
     }
 }
