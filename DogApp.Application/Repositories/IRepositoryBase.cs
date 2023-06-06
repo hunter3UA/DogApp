@@ -11,7 +11,7 @@ namespace DogApp.Application.Repositories
             TEntity entity,
             CancellationToken cancellationToken);
 
-        Task<IEnumerable<TEntity>> GetRangeAsync(
+        Task<IReadOnlyList<TEntity>> GetRangeAsync(
             CancellationToken cancellationToken,
             Expression<Func<TEntity, object>>? sortingExpression,
             SortingOrder sortingOrder = SortingOrder.Asc,

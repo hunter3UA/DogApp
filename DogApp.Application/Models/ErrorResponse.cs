@@ -1,12 +1,17 @@
-﻿using Newtonsoft.Json;
-
-namespace DogApp.Application.Models
+﻿namespace DogApp.Application.Models
 {
-    public sealed class ErrorResponse
+    public sealed record ErrorResponse
     {
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public string? Key { get; set; }
+        public IEnumerable<ErrorModel> Errors { get; set; }
 
-        public required string Message { get; set; }
+        public ErrorResponse(params ErrorModel[] errors) 
+        {
+            Errors = errors;
+        }
+
+        public ErrorResponse(IEnumerable<ErrorModel> errors) 
+        {
+            Errors = errors;
+        }
     }
 }

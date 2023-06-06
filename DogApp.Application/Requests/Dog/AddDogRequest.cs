@@ -1,9 +1,9 @@
 ﻿using LanguageExt.Common;
 using MediatR;
 
-namespace DogApp.Application.Commands.Dog
+namespace DogApp.Application.Requests.Dog
 {
-    public sealed record AddDogCommand(
+    public sealed record AddDogRequest(
         string Name,
         string Color,
         double TailLength,

@@ -54,16 +54,16 @@ namespace DogApp.Api.Extensions
                         .Where(ms => ms.Value is not null && !ms.Value.Errors.IsNullOrEmpty())
                         .ToDictionary(kvp => kvp.Key, kvp => kvp.Value!.Errors.Select(e => e.ErrorMessage)).ToArray();
 
-                    var errorResponse = new List<ErrorResponse>();
+                    var validationErrors = new List<ErrorModel>();
 
                     foreach (var error in errors)
                     {
                         foreach (var subError in error.Value)
                         {
-                            errorResponse.Add(new ErrorResponse { Key = error.Key, Message = subError });
+                            validationErrors.Add(new ErrorModel { Key = error.Key, Message = subError });
                         }
                     }
-                    var result = JsonConvert.SerializeObject(errorResponse);
+                    var result = JsonConvert.SerializeObject(new ErrorResponse(validationErrors));
 
                     return new BadRequestObjectResult(result);
                 };

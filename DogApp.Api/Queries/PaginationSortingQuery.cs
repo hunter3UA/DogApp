@@ -4,12 +4,8 @@ namespace DogApp.Api.Queries
 {
     public class PaginationSortingQuery
     {
-        private const int MaxPageSize = 30;
-
-        public PaginationSortingQuery()
+        public PaginationSortingQuery() 
         {
-            PageSize = PageSize <= 0 || PageSize >= MaxPageSize ? MaxPageSize : PageSize;
-            PageNumber = PageNumber < 1 ? 1 : PageNumber;
             SortingAttribute = string.Empty;
         }
 
@@ -20,7 +16,7 @@ namespace DogApp.Api.Queries
         [FromQuery(Name = "Attribute")]
         public string? SortingAttribute { get; set; }
 
-        [FromQuery(Name ="Order")]
+        [FromQuery(Name = "Order")]
         public string? SortingOrder { get; set; }
     }
 }

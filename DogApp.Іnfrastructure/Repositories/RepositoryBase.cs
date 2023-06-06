@@ -39,7 +39,7 @@ namespace DogApp.Іnfrastructure.Repositories
             return any;
         }
 
-        public async Task<IEnumerable<TEntity>> GetRangeAsync(
+        public async Task<IReadOnlyList<TEntity>> GetRangeAsync(
             CancellationToken cancellationToken,
             Expression<Func<TEntity, object>>? sortingExpression,
             SortingOrder sortingOrder = SortingOrder.Asc,

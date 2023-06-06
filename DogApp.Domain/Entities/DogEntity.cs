@@ -1,6 +1,6 @@
 ﻿namespace DogApp.Domain.Entities
 {
-    public class DogEntity
+    public sealed class DogEntity
     {
         public Guid Id { get; set; }
 

@@ -5,8 +5,11 @@ namespace DogApp.Application.Helpers
 {
     public static class ExpressionHelper
     {
-        public static Expression<Func<T, object>>? CreateSortedExpression<T>(string propertyName)
+        public static Expression<Func<T, object>>? CreateSortedExpression<T>(string? propertyName)
         {
+            if (string.IsNullOrWhiteSpace(propertyName))
+                return null;
+
             var propByName = TypeDescriptor.GetProperties(typeof(T)).Find(propertyName, true);
             if (propByName is null)
                 return null;
