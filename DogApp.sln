@@ -3,7 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33103.184
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DogApp.Api", "DogApp.Api\DogApp.Api.csproj", "{4C19AF09-0D2F-4A35-9588-11932B801700}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DogApp.Api", "DogApp.Api\DogApp.Api.csproj", "{4C19AF09-0D2F-4A35-9588-11932B801700}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DogApp.Domain", "DogApp.Domain\DogApp.Domain.csproj", "{B1F62C64-E33A-44F9-8F56-471BE9DD3569}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DogApp.Іnfrastructure", "DogApp.Іnfrastructure\DogApp.Іnfrastructure.csproj", "{6ED414F4-6D2A-4917-A60F-472FB55F2451}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DogApp.Application", "DogApp.Application\DogApp.Application.csproj", "{FDF43702-15DF-4A8F-83EE-9CCF287D3C0D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application.Tests", "Application.Tests\Application.Tests.csproj", "{0EDD6719-3F77-4335-9123-985FE6CB9D45}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Tests", "Api.Tests\Api.Tests.csproj", "{9841E5D3-B3E5-4509-839B-1543E8C0637C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +25,26 @@ Global
 		{4C19AF09-0D2F-4A35-9588-11932B801700}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C19AF09-0D2F-4A35-9588-11932B801700}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C19AF09-0D2F-4A35-9588-11932B801700}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1F62C64-E33A-44F9-8F56-471BE9DD3569}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1F62C64-E33A-44F9-8F56-471BE9DD3569}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1F62C64-E33A-44F9-8F56-471BE9DD3569}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1F62C64-E33A-44F9-8F56-471BE9DD3569}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6ED414F4-6D2A-4917-A60F-472FB55F2451}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6ED414F4-6D2A-4917-A60F-472FB55F2451}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6ED414F4-6D2A-4917-A60F-472FB55F2451}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6ED414F4-6D2A-4917-A60F-472FB55F2451}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDF43702-15DF-4A8F-83EE-9CCF287D3C0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDF43702-15DF-4A8F-83EE-9CCF287D3C0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDF43702-15DF-4A8F-83EE-9CCF287D3C0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDF43702-15DF-4A8F-83EE-9CCF287D3C0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0EDD6719-3F77-4335-9123-985FE6CB9D45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EDD6719-3F77-4335-9123-985FE6CB9D45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EDD6719-3F77-4335-9123-985FE6CB9D45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EDD6719-3F77-4335-9123-985FE6CB9D45}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9841E5D3-B3E5-4509-839B-1543E8C0637C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9841E5D3-B3E5-4509-839B-1543E8C0637C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9841E5D3-B3E5-4509-839B-1543E8C0637C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9841E5D3-B3E5-4509-839B-1543E8C0637C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
