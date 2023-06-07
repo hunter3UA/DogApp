@@ -28,16 +28,15 @@ namespace DogApp.Api.Controllers
             int totalItems = await _mediator.Send(new GetCountOfDogsRequest(), cancellationToken);
             var pageSettings = PaginationHelper.FilterSettings(query.PageNumber, query.PageSize, totalItems);
 
-            var sortedDogRequest = new GetSortedDogsRequest(
+            var sortedDogRequest = new GetDogsRequest(
                 pageSettings.PageNumber,
                 pageSettings.PageSize,
                 query.SortingOrder,
                 query.SortingAttribute);
 
             var dogs = await _mediator.Send(sortedDogRequest, cancellationToken);
-            var dogsDtos = _mapper.Map<List<DogDto>>(dogs);
 
-            return CreatePagedResult(dogsDtos, pageSettings.PageNumber, pageSettings.PageSize, totalItems, pageSettings.TotalPages);
+            return CreatePagedResult(dogs, pageSettings.PageNumber, pageSettings.PageSize, totalItems, pageSettings.TotalPages);
         }
 
         [HttpPost]
@@ -46,10 +45,7 @@ namespace DogApp.Api.Controllers
             var addDogCommand = _mapper.Map<AddDogRequest>(addDogDto);
             var createdDogId = await _mediator.Send(addDogCommand, cancellationToken);
 
-            return createdDogId.Match(createdId =>
-            {
-                return StatusCode((int)HttpStatusCode.Created, new { id = createdId });
-            }, ExceptionResolver);
+            return StatusCode((int)HttpStatusCode.Created, new { id = createdDogId });
         }
     }
 }

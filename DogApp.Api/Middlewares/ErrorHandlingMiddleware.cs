@@ -5,9 +5,6 @@ using Newtonsoft.Json;
 
 namespace DogApp.Api.Middlewares
 {
-    /// <summary>
-    /// This middleware is used for unexpected erros. Do not use it for manually exceptions throwing
-    /// </summary>
     public class ErrorHandlingMiddleware
     {
         private readonly RequestDelegate _next;
@@ -47,6 +44,7 @@ namespace DogApp.Api.Middlewares
             return error switch
             {
                 KeyNotFoundException => (int)HttpStatusCode.NotFound,
+                InvalidOperationException => (int)HttpStatusCode.BadRequest,
                 DbException => (int)HttpStatusCode.BadRequest,
                 _ => (int)HttpStatusCode.InternalServerError
             };

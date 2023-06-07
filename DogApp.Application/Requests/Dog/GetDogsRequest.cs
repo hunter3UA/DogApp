@@ -1,10 +1,9 @@
 ﻿using DogApp.Domain.Entities;
-using LanguageExt.Common;
 using MediatR;
 
 namespace DogApp.Application.Requests.Dog
 {
-    public sealed record GetSortedDogsRequest(
+    public sealed record GetDogsRequest(
         int Skip,
         int Take,
         string? SortingOrder,

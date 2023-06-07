@@ -8,7 +8,7 @@ using MediatR;
 
 namespace DogApp.Application.Handlers
 {
-    public class GetDogsHandler : IRequestHandler<GetSortedDogsRequest, List<DogEntity>>
+    public class GetDogsHandler : IRequestHandler<GetDogsRequest,List<DogEntity>>
     {
         private readonly IRepositoryWrapper _repositoryWrapper;
         private readonly IMapper _mapper;
@@ -19,7 +19,7 @@ namespace DogApp.Application.Handlers
             _mapper = mapper;
         }
 
-        public async Task<List<DogEntity>> Handle(GetSortedDogsRequest request, CancellationToken cancellationToken)
+        public async Task<List<DogEntity>> Handle(GetDogsRequest request, CancellationToken cancellationToken)
         {
             var sortingOrder = SortingHelper.ConvertToEnum(request.SortingOrder);
             var sortedExpression = ExpressionHelper.CreateSortedExpression<DbDog>(request.SortingAttribute);
