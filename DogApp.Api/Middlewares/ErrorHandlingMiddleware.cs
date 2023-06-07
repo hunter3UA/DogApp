@@ -1,5 +1,4 @@
 ﻿using System.Net;
-using System.Data.Common;
 using DogApp.Application.Models;
 using Newtonsoft.Json;
 
@@ -45,7 +44,6 @@ namespace DogApp.Api.Middlewares
             {
                 KeyNotFoundException => (int)HttpStatusCode.NotFound,
                 InvalidOperationException => (int)HttpStatusCode.BadRequest,
-                DbException => (int)HttpStatusCode.BadRequest,
                 _ => (int)HttpStatusCode.InternalServerError
             };
         }

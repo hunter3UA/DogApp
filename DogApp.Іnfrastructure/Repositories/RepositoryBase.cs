@@ -3,21 +3,20 @@ using Microsoft.EntityFrameworkCore;
 using DogApp.Domain.DbEntities;
 using DogApp.Application.Repositories;
 using DogApp.Domain.Enums;
-using DogApp.Іnfrastructure.DbContexts;
 using DogApp.Іnfrastructure.Extensions;
 
 namespace DogApp.Іnfrastructure.Repositories
 {
-    public class RepositoryBase<TEntity> : IRepositoryBase<TEntity>
+    public abstract class RepositoryBase<TEntity> : IRepositoryBase<TEntity>
         where TEntity : BaseEntity
     {
-        private DogDbContext Context { get; }
+        private readonly DbContext _context; 
 
         private readonly DbSet<TEntity> _dbSet;
 
-        public RepositoryBase(DogDbContext context)
+        public RepositoryBase(DbContext context)
         {
-            Context = context;
+            _context = context;
             _dbSet = context.Set<TEntity>();
         }
 
@@ -25,7 +24,7 @@ namespace DogApp.Іnfrastructure.Repositories
             TEntity entity,
             CancellationToken cancellationToken)
         {
-            var entry = await Context.AddAsync(entity, cancellationToken);
+            var entry = await _context.AddAsync(entity, cancellationToken);
 
             return entry.Entity.Id;
         }

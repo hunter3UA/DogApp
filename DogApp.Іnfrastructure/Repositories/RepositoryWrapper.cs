@@ -1,5 +1,4 @@
 ﻿using DogApp.Application.Repositories;
-using DogApp.Domain.DbEntities;
 using DogApp.Іnfrastructure.DbContexts;
 
 namespace DogApp.Іnfrastructure.Repositories
@@ -8,12 +7,12 @@ namespace DogApp.Іnfrastructure.Repositories
     {
         private DogDbContext _dbContext;
 
-        public IRepositoryBase<DbDog> Dogs { get; }
+        public IDogRepository Dogs { get; }
 
-        public RepositoryWrapper(DogDbContext dbContext, IRepositoryBase<DbDog> _dogs)
+        public RepositoryWrapper(DogDbContext dbContext, IDogRepository dogs)
         {
             _dbContext = dbContext;
-            Dogs = _dogs;
+            Dogs = dogs;
         }
 
         public async Task SaveChangesAsync(CancellationToken cancellationToken)

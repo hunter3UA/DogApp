@@ -1,11 +1,12 @@
-﻿using AutoMapper;
+﻿using System.Linq.Expressions;
+using AutoMapper;
 using DogApp.Application.Handlers;
+using DogApp.Application.Helpers;
 using DogApp.Application.Repositories;
 using DogApp.Application.Requests.Dog;
 using DogApp.Domain.DbEntities;
 using FakeItEasy;
 using FluentAssertions;
-using System.Linq.Expressions;
 using Xunit;
 
 namespace Application.Tests.Handlers.Dogs
@@ -36,11 +37,10 @@ namespace Application.Tests.Handlers.Dogs
             Func<Task> actualResult = async () => await _handler.Handle(addDogRequest, CancellationToken.None);
 
             await actualResult.Should().ThrowAsync<InvalidOperationException>();
-
         }
 
         [Fact]
-        public async Task Handle_IfDogWithInsertedNameExist_ReturnSuccess()
+        public async Task Handle_IfDogWithInsertedNameExist_ReturnNewId()
         {
             var addDogRequest = new AddDogRequest("MyNewDog", "Black", 10, 10);
             var insertedId = Guid.NewGuid();
@@ -48,7 +48,6 @@ namespace Application.Tests.Handlers.Dogs
             A.CallTo(() => _repositoryWrapper.Dogs.AnyAsync(
                 A<Expression<Func<DbDog, bool>>>._,
                 A<CancellationToken>._)).Returns(false);
-
             A.CallTo(() => _repositoryWrapper.Dogs.AddAsync(A<DbDog>._, A<CancellationToken>._))
                 .Returns(insertedId);
 

@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DogApp.Іnfrastructure", "D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DogApp.Application", "DogApp.Application\DogApp.Application.csproj", "{FDF43702-15DF-4A8F-83EE-9CCF287D3C0D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.Tests", "Application.Tests\Application.Tests.csproj", "{0EDD6719-3F77-4335-9123-985FE6CB9D45}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application.Tests", "Application.Tests\Application.Tests.csproj", "{0EDD6719-3F77-4335-9123-985FE6CB9D45}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Tests", "Api.Tests\Api.Tests.csproj", "{9841E5D3-B3E5-4509-839B-1543E8C0637C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{0EDD6719-3F77-4335-9123-985FE6CB9D45}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0EDD6719-3F77-4335-9123-985FE6CB9D45}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0EDD6719-3F77-4335-9123-985FE6CB9D45}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9841E5D3-B3E5-4509-839B-1543E8C0637C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9841E5D3-B3E5-4509-839B-1543E8C0637C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9841E5D3-B3E5-4509-839B-1543E8C0637C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9841E5D3-B3E5-4509-839B-1543E8C0637C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -18,7 +18,7 @@ namespace DogApp.Tests.Handlers.Dogs
         }
 
         [Fact]
-        public async Task Handle_Success()
+        public async Task Handle_IfReuestIsCorrect_RerturnSuccess()
         {
             var result = await _handler.Handle(new GetCountOfDogsRequest(), CancellationToken.None);
 

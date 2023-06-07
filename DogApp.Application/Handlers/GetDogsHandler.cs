@@ -8,7 +8,7 @@ using MediatR;
 
 namespace DogApp.Application.Handlers
 {
-    public class GetDogsHandler : IRequestHandler<GetDogsRequest,List<DogEntity>>
+    public sealed class GetDogsHandler : IRequestHandler<GetDogsRequest,List<DogEntity>>
     {
         private readonly IRepositoryWrapper _repositoryWrapper;
         private readonly IMapper _mapper;

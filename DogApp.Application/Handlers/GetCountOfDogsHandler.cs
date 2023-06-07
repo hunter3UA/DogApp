@@ -4,7 +4,7 @@ using MediatR;
 
 namespace DogApp.Application.Handlers
 {
-    public class GetCountOfDogsHandler : IRequestHandler<GetCountOfDogsRequest, int>
+    public sealed class GetCountOfDogsHandler : IRequestHandler<GetCountOfDogsRequest, int>
     {
         private readonly IRepositoryWrapper _respositoryWrapper;
 

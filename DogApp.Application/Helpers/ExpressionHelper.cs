@@ -21,6 +21,5 @@ namespace DogApp.Application.Helpers
 
             return orderExpression;
         }
-
     }
 }

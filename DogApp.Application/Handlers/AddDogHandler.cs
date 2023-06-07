@@ -6,7 +6,7 @@ using MediatR;
 
 namespace DogApp.Application.Handlers
 {
-    public class AddDogHandler : IRequestHandler<AddDogRequest, Guid>
+    public sealed class AddDogHandler : IRequestHandler<AddDogRequest, Guid>
     {
         private readonly IRepositoryWrapper _repositoryWrapper;
         private readonly IMapper _mapper;

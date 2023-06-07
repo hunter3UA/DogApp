@@ -6,30 +6,26 @@ namespace DogApp.Application.Validators
 {
     public class AddDogValidator : AbstractValidator<AddDogDto>
     {
-        private const string NotEmpty = "can not be empty";
-
         public AddDogValidator()
         {
             RuleFor(p => p.Name)
-                .NotNull()
-                .WithMessage($"Field {NotEmpty}")
+                .Cascade(CascadeMode.Stop)
                 .NotEmpty()
-                .WithMessage($"Field {NotEmpty}")
+                .WithMessage($"Field can not be empty")
                 .MaximumLength(EntityConstants.DogConstants.MaxDogNameLength)
                 .WithMessage($"Filed should be less than {EntityConstants.DogConstants.MaxDogNameLength}")
                 .Matches("^[a-zA-Z ]+$")
                 .WithMessage($"Field should contains only alphabetic characters");
 
             RuleFor(p => p.Color)
-                .NotNull()
-                .WithMessage($"Field {NotEmpty}")
+                .Cascade(CascadeMode.Stop)
                 .NotEmpty()
-                .WithMessage($"Field {NotEmpty}")
+                .WithMessage($"Field can not be empty")
                 .MaximumLength(EntityConstants.DogConstants.MaxDogColorLength)
                 .WithMessage($"Field should not be less than {EntityConstants.DogConstants.MaxDogColorLength} characters")
                 .Matches("^[a-zA-Z& ]+$")
-                .WithMessage($"Field should contains only alphabetic characters and spliting by &'");
-                
+                .WithMessage($"Field should contains only alphabetic characters and spliting by '&'");
+
             RuleFor(p => p.TailLength)
                 .GreaterThanOrEqualTo(0)
                 .WithMessage($"Field should be greater than or equal to 0")

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DogApp.Іnfrastructure.Migrations
 {
     [DbContext(typeof(DogDbContext))]
-    [Migration("20230605193720_CreatingDb")]
-    partial class CreatingDb
+    [Migration("20230607185621_Creating")]
+    partial class Creating
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -69,7 +69,7 @@ namespace DogApp.Іnfrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("e4783b6a-9c04-4d57-a010-3351c877dd6c"),
+                            Id = new Guid("cbdf6c20-5512-4fa6-a809-aa2d18ef3177"),
                             Color = "white",
                             Name = "Jeck",
                             TailLength = 10.0,
@@ -77,7 +77,7 @@ namespace DogApp.Іnfrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("1a20c33e-a3b8-4f8c-ace5-c1751f7de304"),
+                            Id = new Guid("522c2af8-fa09-4a09-8688-ad82ce28e96d"),
                             Color = "black",
                             Name = "Alice",
                             TailLength = 6.0,
@@ -85,7 +85,7 @@ namespace DogApp.Іnfrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("5193adb0-af3e-4610-9eeb-5c5133393012"),
+                            Id = new Guid("8211c646-1be7-467b-8818-0333024ae862"),
                             Color = "black & brown",
                             Name = "Richard",
                             TailLength = 20.0,
@@ -93,7 +93,7 @@ namespace DogApp.Іnfrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("2c042acc-38bd-461d-a489-07ee786518da"),
+                            Id = new Guid("c61af73e-68fb-4b30-9e45-e3362ed4f378"),
                             Color = "brown & white",
                             Name = "Bob",
                             TailLength = 15.0,
@@ -101,7 +101,7 @@ namespace DogApp.Іnfrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("768677ef-648e-4a9b-b2dd-958792c3acac"),
+                            Id = new Guid("ab791748-e52f-4dd0-85ed-e981b09b92d2"),
                             Color = "grey",
                             Name = "Norman",
                             TailLength = 17.0,
@@ -109,7 +109,7 @@ namespace DogApp.Іnfrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("303bc3ba-fb9a-4404-8343-9612c89662a2"),
+                            Id = new Guid("8f7b4b2e-1cad-4f59-bbc0-0d188146a65e"),
                             Color = "black",
                             Name = "David",
                             TailLength = 35.0,
@@ -117,7 +117,7 @@ namespace DogApp.Іnfrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("b2ad8106-01e4-4b27-9d7a-aeed1df3693c"),
+                            Id = new Guid("533df35a-8a05-4cc2-addd-584ed7bd9de6"),
                             Color = "brown",
                             Name = "Neo",
                             TailLength = 20.0,
@@ -125,7 +125,7 @@ namespace DogApp.Іnfrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("e2d1340f-3401-46e7-96ef-d1f2fe8c09a9"),
+                            Id = new Guid("90069a2c-2363-4873-8c86-61b08663b1c1"),
                             Color = "brown & white",
                             Name = "Jessy",
                             TailLength = 23.300000000000001,

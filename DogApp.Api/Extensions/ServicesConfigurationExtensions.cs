@@ -19,7 +19,7 @@ namespace DogApp.Api.Extensions
         public static IServiceCollection AddDogDbContext(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<DogDbContext>(options => options.UseSqlServer(configuration["ConnectionStrings:DogDb"]));
-            services.AddScoped(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
+            services.AddScoped<IDogRepository, DogRepository>();
             services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
 
             return services;

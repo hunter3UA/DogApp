@@ -1,10 +1,8 @@
-﻿using DogApp.Domain.DbEntities;
-
-namespace DogApp.Application.Repositories
+﻿namespace DogApp.Application.Repositories
 {
     public interface IRepositoryWrapper
     {
-        IRepositoryBase<DbDog> Dogs { get; }
+        IDogRepository Dogs { get; }
 
         Task SaveChangesAsync(CancellationToken cancellationToken);
     }

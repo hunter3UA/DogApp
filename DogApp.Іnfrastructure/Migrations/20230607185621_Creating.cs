@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace DogApp.Іnfrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class CreatingDb : Migration
+    public partial class Creating : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -35,14 +35,14 @@ namespace DogApp.Іnfrastructure.Migrations
                 columns: new[] { "id", "color", "name", "tail_length", "weight" },
                 values: new object[,]
                 {
-                    { new Guid("1a20c33e-a3b8-4f8c-ace5-c1751f7de304"), "black", "Alice", 6.0, 15.0 },
-                    { new Guid("2c042acc-38bd-461d-a489-07ee786518da"), "brown & white", "Bob", 15.0, 30.300000000000001 },
-                    { new Guid("303bc3ba-fb9a-4404-8343-9612c89662a2"), "black", "David", 35.0, 40.0 },
-                    { new Guid("5193adb0-af3e-4610-9eeb-5c5133393012"), "black & brown", "Richard", 20.0, 40.700000000000003 },
-                    { new Guid("768677ef-648e-4a9b-b2dd-958792c3acac"), "grey", "Norman", 17.0, 55.0 },
-                    { new Guid("b2ad8106-01e4-4b27-9d7a-aeed1df3693c"), "brown", "Neo", 20.0, 44.700000000000003 },
-                    { new Guid("e2d1340f-3401-46e7-96ef-d1f2fe8c09a9"), "brown & white", "Jessy", 23.300000000000001, 37.600000000000001 },
-                    { new Guid("e4783b6a-9c04-4d57-a010-3351c877dd6c"), "white", "Jeck", 10.0, 20.5 }
+                    { new Guid("522c2af8-fa09-4a09-8688-ad82ce28e96d"), "black", "Alice", 6.0, 15.0 },
+                    { new Guid("533df35a-8a05-4cc2-addd-584ed7bd9de6"), "brown", "Neo", 20.0, 44.700000000000003 },
+                    { new Guid("8211c646-1be7-467b-8818-0333024ae862"), "black & brown", "Richard", 20.0, 40.700000000000003 },
+                    { new Guid("8f7b4b2e-1cad-4f59-bbc0-0d188146a65e"), "black", "David", 35.0, 40.0 },
+                    { new Guid("90069a2c-2363-4873-8c86-61b08663b1c1"), "brown & white", "Jessy", 23.300000000000001, 37.600000000000001 },
+                    { new Guid("ab791748-e52f-4dd0-85ed-e981b09b92d2"), "grey", "Norman", 17.0, 55.0 },
+                    { new Guid("c61af73e-68fb-4b30-9e45-e3362ed4f378"), "brown & white", "Bob", 15.0, 30.300000000000001 },
+                    { new Guid("cbdf6c20-5512-4fa6-a809-aa2d18ef3177"), "white", "Jeck", 10.0, 20.5 }
                 });
 
             migrationBuilder.CreateIndex(

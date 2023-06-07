@@ -1,8 +1,8 @@
 ﻿using System.Net;
 using AutoMapper;
-using DogApp.Api.Queries;
 using DogApp.Application.Dtos.Dog;
 using DogApp.Application.Helpers;
+using DogApp.Application.Queries;
 using DogApp.Application.Requests.Dog;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -28,22 +28,23 @@ namespace DogApp.Api.Controllers
             int totalItems = await _mediator.Send(new GetCountOfDogsRequest(), cancellationToken);
             var pageSettings = PaginationHelper.FilterSettings(query.PageNumber, query.PageSize, totalItems);
 
-            var sortedDogRequest = new GetDogsRequest(
+            var getDogsRequest = new GetDogsRequest(
                 pageSettings.PageNumber,
                 pageSettings.PageSize,
                 query.SortingOrder,
                 query.SortingAttribute);
 
-            var dogs = await _mediator.Send(sortedDogRequest, cancellationToken);
+            var dogs = await _mediator.Send(getDogsRequest, cancellationToken);
+            var dogsDtos = _mapper.Map<List<DogDto>>(dogs);
 
-            return CreatePagedResult(dogs, pageSettings.PageNumber, pageSettings.PageSize, totalItems, pageSettings.TotalPages);
+            return CreatePagedResult(dogsDtos, pageSettings.PageNumber, pageSettings.PageSize, totalItems, pageSettings.TotalPages);
         }
 
         [HttpPost]
         public async Task<ActionResult> AddDog([FromBody] AddDogDto addDogDto, CancellationToken cancellationToken)
         {
-            var addDogCommand = _mapper.Map<AddDogRequest>(addDogDto);
-            var createdDogId = await _mediator.Send(addDogCommand, cancellationToken);
+            var addDogRequest = _mapper.Map<AddDogRequest>(addDogDto);
+            var createdDogId = await _mediator.Send(addDogRequest, cancellationToken);
 
             return StatusCode((int)HttpStatusCode.Created, new { id = createdDogId });
         }

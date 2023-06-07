@@ -1,14 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace DogApp.Api.Queries
+namespace DogApp.Application.Queries
 {
-    public class PaginationSortingQuery
+    public sealed class PaginationSortingQuery
     {
-        public PaginationSortingQuery() 
-        {
-            SortingAttribute = string.Empty;
-        }
-
         public int PageNumber { get; set; }
 
         public int PageSize { get; set; }
@@ -18,5 +13,10 @@ namespace DogApp.Api.Queries
 
         [FromQuery(Name = "Order")]
         public string? SortingOrder { get; set; }
+
+        public PaginationSortingQuery()
+        {
+            SortingAttribute = string.Empty;
+        }
     }
 }

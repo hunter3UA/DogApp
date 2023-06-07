@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Linq.Expressions;
+using AutoMapper;
 using DogApp.Application.Handlers;
 using DogApp.Application.Repositories;
 using DogApp.Application.Requests.Dog;
@@ -7,7 +8,6 @@ using DogApp.Domain.Entities;
 using DogApp.Domain.Enums;
 using FakeItEasy;
 using FluentAssertions;
-using System.Linq.Expressions;
 using Xunit;
 
 namespace Application.Tests.Handlers.Dogs
@@ -25,7 +25,6 @@ namespace Application.Tests.Handlers.Dogs
             _handler = new GetDogsHandler(_repositoryWrapper, _mapper);
         }
 
-
         [Fact]
         public async Task Handle_IfEntitiesNotEmpty_ReturnNoneEmptyList()
         {
@@ -34,8 +33,8 @@ namespace Application.Tests.Handlers.Dogs
                 new DogEntity { Name = "Dog1", Color = "Black" },
                 new DogEntity { Name = "Dog2", Color = "Black" }
             };
-
             var fakes = A.CollectionOfFake<DbDog>(2);
+
             A.CallTo(() => _repositoryWrapper
             .Dogs
             .GetRangeAsync(
@@ -45,7 +44,6 @@ namespace Application.Tests.Handlers.Dogs
                 A<int>._,
                 A<int>._,
                 A<bool>._)).Returns(fakes.ToList());
-
             A.CallTo(() => _mapper.Map<List<DogEntity>>(A<List<DbDog>>._))
                 .Returns(dogEntities);
 
